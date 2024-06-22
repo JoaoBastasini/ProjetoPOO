@@ -1,21 +1,24 @@
 package br.unesp.poo.grupo03.modelo;
 
 public class Nutricionista extends Pessoa{
-    private String CNPJ;
+    private String RegistroProfissional;
     private String senha;
+    private Especialidade especialidade;
 
-    public Nutricionista(String CNPJ, String senha, String nome, String email) {
-        super(nome, email);
-        this.CNPJ = CNPJ;
-        this.senha = senha;
+    public String getRegistroProfissional() {
+        return RegistroProfissional;
     }
 
-    public String getCNPJ() {
-        return CNPJ;
+    public void setRegistroProfissional(String RegistroProfissional) {
+        this.RegistroProfissional = RegistroProfissional;
     }
 
-    public void setCNPJ(String CNPJ) {
-        this.CNPJ = CNPJ;
+    public Especialidade getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
     }
 
     public String getSenha() {

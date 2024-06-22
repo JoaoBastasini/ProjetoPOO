@@ -4,21 +4,25 @@ public class Paciente extends Pessoa {
     private float peso;
     private int idade;
     private float alturaMetros;
-    private float imc;
+    private float imc; // indice de massa corporal
+    private float tmb; // taxa metabolismo basal
     private String cpf;
     private Objetivo objetivo;
+    private Nutricionista nutricionista;
 
     public Paciente() {
     }
 
-    public Paciente(float peso, int idade, float alturaMetros, float imc, String cpf, Objetivo objetivo, String nome, String email) {
+    public Paciente(float peso, int idade, float alturaMetros, float imc, float tmb, String cpf, Objetivo objetivo, Nutricionista nutricionista, String nome, String email) {
         super(nome, email);
         this.peso = peso;
         this.idade = idade;
         this.alturaMetros = alturaMetros;
         this.imc = imc;
+        this.tmb = tmb;
         this.cpf = cpf;
         this.objetivo = objetivo;
+        this.nutricionista = nutricionista;
     }
 
     public float getPeso() {
@@ -69,5 +73,21 @@ public class Paciente extends Pessoa {
         this.objetivo = objetivo;
     }
 
+    public Nutricionista getNutricionista() {
+        return nutricionista;
+    }
+
+    public void setNutricionista(Nutricionista nutricionista) {
+        this.nutricionista = nutricionista;
+    }
+
+    public float getTmb() {
+        return tmb;
+    }
+
+    public void setTmb(float tmb) {
+        this.tmb = tmb;
+    }
+    
     
 }
