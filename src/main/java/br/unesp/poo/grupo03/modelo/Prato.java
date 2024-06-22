@@ -1,9 +1,6 @@
 package br.unesp.poo.grupo03.modelo;
 
-/**
- *
- * @author cauan
- */
+
 public class Prato {
     private String nomePrato;
     private int caloriasRefeicao;

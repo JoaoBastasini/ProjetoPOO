@@ -1,11 +1,12 @@
 package br.unesp.poo.grupo03;
 
-/**
- *
- * @author cauan
- */
+import static br.unesp.poo.grupo03.modelo.GeneratePDF.geradorPDF;
+import java.io.FileNotFoundException;
+
+
 public class Projeto {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        geradorPDF();
     }
 }
