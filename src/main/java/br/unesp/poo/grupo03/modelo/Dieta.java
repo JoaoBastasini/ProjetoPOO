@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Dieta {
     private Paciente paciente;
+    private Nutricionista nutricionista;
     private Date dtInicio;
     private List<Refeicao> refeicoesDiarias;
 

@@ -1,31 +1,24 @@
 package br.unesp.poo.grupo03.modelo;
 
-public class Paciente {
-    private String nome;
+public class Paciente extends Pessoa {
     private float peso;
     private int idade;
     private float alturaMetros;
-    private float IMC;
+    private float imc;
+    private String cpf;
     private Objetivo objetivo;
 
     public Paciente() {
     }
 
-    public Paciente(String nome, float peso, int idade, float alturaMetros, float IMC, Objetivo objetivo) {
-        this.nome = nome;
+    public Paciente(float peso, int idade, float alturaMetros, float imc, String cpf, Objetivo objetivo, String nome, String email) {
+        super(nome, email);
         this.peso = peso;
         this.idade = idade;
         this.alturaMetros = alturaMetros;
-        this.IMC = IMC;
+        this.imc = imc;
+        this.cpf = cpf;
         this.objetivo = objetivo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public float getPeso() {
@@ -52,12 +45,20 @@ public class Paciente {
         this.alturaMetros = alturaMetros;
     }
 
-    public float getIMC() {
-        return IMC;
+    public float getImc() {
+        return imc;
     }
 
-    public void setIMC(float IMC) {
-        this.IMC = IMC;
+    public void setImc(float imc) {
+        this.imc = imc;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Objetivo getObjetivo() {
@@ -67,6 +68,6 @@ public class Paciente {
     public void setObjetivo(Objetivo objetivo) {
         this.objetivo = objetivo;
     }
-    
+
     
 }
