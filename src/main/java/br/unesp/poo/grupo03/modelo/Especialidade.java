@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package br.unesp.poo.grupo03.modelo;
 
-/**
- *
- * @author cauan
- */
+
 public class Especialidade {
     boolean nutricaoClinica;
     boolean nutricaoPediatrica;

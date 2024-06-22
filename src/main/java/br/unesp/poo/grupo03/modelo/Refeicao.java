@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.unesp.poo.grupo03.modelo;
 
 import java.util.List;
 
-/**
- *
- * @author cauan
- */
+
 public class Refeicao {
     private String nome; // (Cafe, Almoco, Lanche, etc...
     private List<Prato> opcoesDePrato;
