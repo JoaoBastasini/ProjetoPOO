@@ -1,31 +1,28 @@
 package br.unesp.poo.grupo03.modelo;
 
-public class Paciente {
-    private String nome;
+public class Paciente extends Pessoa {
     private float peso;
     private int idade;
     private float alturaMetros;
-    private float IMC;
+    private float imc; // indice de massa corporal
+    private float tmb; // taxa metabolismo basal
+    private String cpf;
     private Objetivo objetivo;
+    private Nutricionista nutricionista;
 
     public Paciente() {
     }
 
-    public Paciente(String nome, float peso, int idade, float alturaMetros, float IMC, Objetivo objetivo) {
-        this.nome = nome;
+    public Paciente(float peso, int idade, float alturaMetros, float imc, float tmb, String cpf, Objetivo objetivo, Nutricionista nutricionista, String nome, String email) {
+        super(nome, email);
         this.peso = peso;
         this.idade = idade;
         this.alturaMetros = alturaMetros;
-        this.IMC = IMC;
+        this.imc = imc;
+        this.tmb = tmb;
+        this.cpf = cpf;
         this.objetivo = objetivo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        this.nutricionista = nutricionista;
     }
 
     public float getPeso() {
@@ -52,12 +49,20 @@ public class Paciente {
         this.alturaMetros = alturaMetros;
     }
 
-    public float getIMC() {
-        return IMC;
+    public float getImc() {
+        return imc;
     }
 
-    public void setIMC(float IMC) {
-        this.IMC = IMC;
+    public void setImc(float imc) {
+        this.imc = imc;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Objetivo getObjetivo() {
@@ -66,6 +71,22 @@ public class Paciente {
 
     public void setObjetivo(Objetivo objetivo) {
         this.objetivo = objetivo;
+    }
+
+    public Nutricionista getNutricionista() {
+        return nutricionista;
+    }
+
+    public void setNutricionista(Nutricionista nutricionista) {
+        this.nutricionista = nutricionista;
+    }
+
+    public float getTmb() {
+        return tmb;
+    }
+
+    public void setTmb(float tmb) {
+        this.tmb = tmb;
     }
     
     

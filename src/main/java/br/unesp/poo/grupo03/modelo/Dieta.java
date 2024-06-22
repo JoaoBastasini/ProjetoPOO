@@ -11,7 +11,7 @@ public class Dieta {
     public Dieta() {
     }
 
-    public Dieta(Paciente paciente, Date dtInicio, List<Refeicao> refeicoesDiarias) {
+    public Dieta(Paciente paciente, Nutricionista nutricionista, Date dtInicio, List<Refeicao> refeicoesDiarias) {
         this.paciente = paciente;
         this.dtInicio = dtInicio;
         this.refeicoesDiarias = refeicoesDiarias;
@@ -40,6 +40,5 @@ public class Dieta {
     public void setRefeicoesDiarias(List<Refeicao> refeicoesDiarias) {
         this.refeicoesDiarias = refeicoesDiarias;
     }
-    
     
 }
