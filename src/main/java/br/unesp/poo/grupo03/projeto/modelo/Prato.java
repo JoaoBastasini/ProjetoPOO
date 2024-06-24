@@ -1,15 +1,12 @@
 package br.unesp.poo.grupo03.projeto.modelo;
 
-
 public class Prato {
     private String nomePrato;
     private int caloriasRefeicao;
     private int pesoGramas;
 
-    public Prato() {
-    }
 
-    public Prato(String nomePrato, int caloriasRefeicao, int pesoGramas) {
+    public Prato(String nomePrato, int caloriasRefeicao, int pesoGramas){
         this.nomePrato = nomePrato;
         this.caloriasRefeicao = caloriasRefeicao;
         this.pesoGramas = pesoGramas;
@@ -39,4 +36,12 @@ public class Prato {
         this.pesoGramas = pesoGramas;
     }
 
+    @Override
+    public String toString() {
+        return "Prato{" +
+                "nomePrato='" + nomePrato + '\'' +
+                ", caloriasRefeicao=" + caloriasRefeicao +
+                ", pesoGramas=" + pesoGramas +
+                '}';
+    }
 }
