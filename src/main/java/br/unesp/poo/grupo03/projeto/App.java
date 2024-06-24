@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import static br.unesp.poo.grupo03.modelo.utilitario.GeneratePDF.geradorPDF;
+import java.io.FileNotFoundException;
 
 import java.io.IOException;
 
@@ -31,8 +33,9 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         launch();
+        geradorPDF();
     }
 
 }
