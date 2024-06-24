@@ -10,9 +10,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <exec.mainClass>br.unesp.poo.grupo03.Projeto</exec.mainClass>
+        <itext.version>8.0.4</itext.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext-core</artifactId>
+            <version>5.5.13.3</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>kernel</artifactId>
+            <version>8.0.4</version>
+            <type>jar</type>
+        </dependency>
         <!-- JavaFX dependencies -->
         <dependency>
             <groupId>org.openjfx</groupId>
