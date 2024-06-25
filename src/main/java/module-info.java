@@ -4,7 +4,10 @@ module br.unesp.poo.grupo03.projeto {
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
     requires org.apache.commons.collections4;
-
+    requires kernel;
+    requires layout;
+    requires io;
+    
     opens br.unesp.poo.grupo03.projeto to javafx.fxml;
     exports br.unesp.poo.grupo03.projeto;
 }
