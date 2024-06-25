@@ -14,10 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarregadorDados {
-
+    public static boolean init;
+    
     public static void carregar() {
         // Criando e Carregando Pratos
-
+        
         PratoRepositorio pratosRep = new PratoRepositorio();
         List<Prato> pratos = new ArrayList<>();
 

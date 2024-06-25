@@ -1,12 +1,18 @@
 package br.unesp.poo.grupo03.projeto;
 
+import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
+import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
+import br.unesp.poo.grupo03.projeto.utilitario.CarregadorDados;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -19,7 +25,6 @@ public class LoginController {
 //
     //@FXML
     //private URL location;
-
     @FXML
     private Button btnEntrar;
 
@@ -35,24 +40,35 @@ public class LoginController {
         String senha = txtSenha.getText();
         login(registro, senha);
     }
-    
-    void login(String registro, String senha) throws IOException{
-        if (registro.equals("123") && senha.equals("123")){
+
+    void login(String registro, String senha) throws IOException {
+        NutricionistaRepositorio nr = new NutricionistaRepositorio();
+        if (nr.existe(registro) && senha.equals(nr.buscar(registro).getSenha())) {
+            System.setProperty("login", registro);
+            System.setProperty("password", senha);
+
             Parent root = FXMLLoader.load(getClass().getResource("telaInicial.fxml"));
             Stage inicialStage = new Stage();
             inicialStage.initStyle(StageStyle.DECORATED);
             inicialStage.setScene(new Scene(root));
-            
+
             Stage stage = (Stage) btnEntrar.getScene().getWindow();
             stage.close();
-            
+
             inicialStage.show();
+        } else {
+            Alert alert = new Alert(AlertType.NONE, "Senha incorreta, tente novamente!", ButtonType.OK);
+            alert.show();
+            txtRegistro.setText("");
+            txtSenha.setText("");
         }
     }
 
-    //@Override
-    //public void initialize(URL url, ResourceBundle rb) {
-    //    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    //}
-
+    @FXML
+    void initialize() {
+        if (!CarregadorDados.init) {
+            CarregadorDados.carregar();
+            CarregadorDados.init = true;
+        }
+    }
 }

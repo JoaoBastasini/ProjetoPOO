@@ -31,4 +31,13 @@ public class NutricionistaRepositorio {
         }
         return null;
     }
+
+    public boolean existe(String registro) {
+        for (Nutricionista nutricionista : nutricionistas) {
+            if (nutricionista.getRegistroProfissional().equals(registro)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
