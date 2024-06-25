@@ -8,6 +8,8 @@ module br.unesp.poo.grupo03.projeto {
     requires layout;
     requires io;
     requires java.base;
+    requires javafx.base;
+    requires javafx.graphics;
     
     opens br.unesp.poo.grupo03.projeto to javafx.fxml;
     exports br.unesp.poo.grupo03.projeto;

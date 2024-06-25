@@ -34,4 +34,13 @@ public class PacienteRepositorio {
             }
         }
     }
+
+    public Paciente buscar(String cpf) {
+        for (Paciente paciente : pacientes) {
+            if (paciente.getCpf().equals(cpf)) {
+                return paciente;
+            }
+        }
+        return null;
+    }
 }
