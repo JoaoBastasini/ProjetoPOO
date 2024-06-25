@@ -43,7 +43,7 @@ public class CarregadorDados {
         pratos.add(new Prato("Cuscuz marroquino", 400, 250));
 
         for (Prato p : pratos) {
-            pratosRep.adicionar(p);
+            PratoRepositorio.adicionarPrato(p);
         }
 
         // Criando e Carregando Refeicoes
