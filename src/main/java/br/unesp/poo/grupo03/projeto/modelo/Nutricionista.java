@@ -1,9 +1,20 @@
 package br.unesp.poo.grupo03.projeto.modelo;
 
-public class Nutricionista extends Pessoa{
+public class Nutricionista extends Pessoa {
+
     private String RegistroProfissional;
     private String senha;
     private Especialidade especialidade;
+
+    public Nutricionista() {
+    }
+
+    public Nutricionista(String RegistroProfissional, String senha, Especialidade especialidade, String nome, String email) {
+        super(nome, email);
+        this.RegistroProfissional = RegistroProfissional;
+        this.senha = senha;
+        this.especialidade = especialidade;
+    }
 
     public String getRegistroProfissional() {
         return RegistroProfissional;
@@ -28,5 +39,5 @@ public class Nutricionista extends Pessoa{
     public void setSenha(String senha) {
         this.senha = senha;
     }
-   
+
 }

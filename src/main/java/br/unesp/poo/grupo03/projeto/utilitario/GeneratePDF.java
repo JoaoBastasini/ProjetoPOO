@@ -1,4 +1,4 @@
-package br.unesp.poo.grupo03.modelo.utilitario;
+package br.unesp.poo.grupo03.projeto.utilitario;
 
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;

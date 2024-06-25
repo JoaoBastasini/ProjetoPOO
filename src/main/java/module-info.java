@@ -7,6 +7,7 @@ module br.unesp.poo.grupo03.projeto {
     requires kernel;
     requires layout;
     requires io;
+    requires java.base;
     
     opens br.unesp.poo.grupo03.projeto to javafx.fxml;
     exports br.unesp.poo.grupo03.projeto;
