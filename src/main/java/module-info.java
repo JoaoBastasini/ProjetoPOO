@@ -11,6 +11,7 @@ module br.unesp.poo.grupo03.projeto {
     requires javafx.base;
     requires javafx.graphics;
     
+    opens br.unesp.poo.grupo03.projeto.modelo to javafx.base;
     opens br.unesp.poo.grupo03.projeto to javafx.fxml;
     exports br.unesp.poo.grupo03.projeto;
 }

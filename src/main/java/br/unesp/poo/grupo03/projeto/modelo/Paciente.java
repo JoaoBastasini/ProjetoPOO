@@ -11,7 +11,7 @@ public class Paciente extends Pessoa {
     private Objetivo objetivo;
     private Nutricionista nutricionista;
     private boolean sexoMasculino;
-    
+
     public Paciente() {
     }
 
@@ -22,7 +22,7 @@ public class Paciente extends Pessoa {
         this.alturaMetros = alturaMetros;
         this.imc = calcularImc();
         this.tmb = calcularTmb();
-        this.cpf = cpf;
+        this.cpf = formatarCpf(cpf);
         this.objetivo = objetivo;
         this.nutricionista = nutricionista;
         this.sexoMasculino = sexoMasculino;
@@ -90,6 +90,10 @@ public class Paciente extends Pessoa {
 
     public void setTmb(float tmb) {
         this.tmb = tmb;
+    }
+
+    private String formatarCpf(String cpf) {
+        return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
     }
 
     public float calcularImc() {

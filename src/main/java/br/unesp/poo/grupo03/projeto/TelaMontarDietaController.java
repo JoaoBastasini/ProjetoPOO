@@ -4,23 +4,37 @@
  */
 package br.unesp.poo.grupo03.projeto;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 
 /**
  * FXML Controller class
  *
  * @author cauan
  */
-public class TelaMontarDietaController implements Initializable {
+public class TelaMontarDietaController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
+    @FXML
+    private Button btnNovoPaciente;
+
+    @FXML
+    private Button btnNovoPaciente1;
+
+    @FXML
+    private Button btnNovoPaciente2;
+
+    @FXML
+    private ListView<?> lstPratos;
+
+    @FXML
+    private ListView<?> lstRefeicoes;
+
+    @FXML
+    void initialize() {
+        
     }    
     
 }

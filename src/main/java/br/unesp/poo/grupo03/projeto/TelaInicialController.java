@@ -3,11 +3,8 @@ package br.unesp.poo.grupo03.projeto;
 import br.unesp.poo.grupo03.projeto.modelo.Paciente;
 import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
-import br.unesp.poo.grupo03.projeto.utilitario.CarregadorDados;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,17 +14,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class TelaInicialController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button btnEditar;
@@ -54,7 +47,13 @@ public class TelaInicialController {
     private Label lblNutricionista;
 
     @FXML
-    private ListView<String> lstFuncionarios;
+    private TableColumn<Paciente, String> tblClCpf;
+
+    @FXML
+    private TableColumn<Paciente, String> tblClNome;
+
+    @FXML
+    private TableView<Paciente> tblPacientes;
 
     @FXML
     void OnClickBtnSair(ActionEvent event) throws IOException {
@@ -72,39 +71,41 @@ public class TelaInicialController {
 
     @FXML
     void onClickBtnImprimir(ActionEvent event) {
+
+    }
+
+    void preencherTabela() {
+
         PacienteRepositorio pr = new PacienteRepositorio();
         NutricionistaRepositorio nr = new NutricionistaRepositorio();
-        // Obter a lista de pacientes do repositório
+
         List<Paciente> pacientes = pr.getPacientes();
-        
-        ObservableList<String> observableListPacientes =  FXCollections.observableArrayList();
-        
-        for (Paciente p: pacientes){
-            if(p.getNutricionista() == nr.buscar(System.getProperty("login"))){
-                observableListPacientes.add(p.getNome());
+
+        tblClNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+
+        tblClCpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+
+        ObservableList<Paciente> dadosPacientes = FXCollections.observableArrayList();
+
+        for (Paciente p : pacientes) {
+            if (p.getNutricionista() == nr.buscar(System.getProperty("login"))) {
+                dadosPacientes.add(p);
             }
         }
 
-        // Definir o ObservableList no ListView
-        lstFuncionarios.setItems(observableListPacientes);
+        tblPacientes.setItems(dadosPacientes);
     }
+
+
 
     @FXML
     void initialize() {
-        assert btnEditar != null : "fx:id=\"btnEditar\" was not injected: check your FXML file 'telaInicial.fxml'.";
-        assert btnImprimir != null : "fx:id=\"btnImprimir\" was not injected: check your FXML file 'telaInicial.fxml'.";
-        assert btnMontarDieta != null : "fx:id=\"btnMontarDieta\" was not injected: check your FXML file 'telaInicial.fxml'.";
-        assert btnNovoPaciente != null : "fx:id=\"btnNovoPaciente\" was not injected: check your FXML file 'telaInicial.fxml'.";
-        assert btnRemover != null : "fx:id=\"btnRemover\" was not injected: check your FXML file 'telaInicial.fxml'.";
-        assert btnSair != null : "fx:id=\"btnSair\" was not injected: check your FXML file 'telaInicial.fxml'.";
-        assert lblEspecialidade != null : "fx:id=\"lblEspecialidade\" was not injected: check your FXML file 'telaInicial.fxml'.";
-        assert lblNutricionista != null : "fx:id=\"lblNutricionista\" was not injected: check your FXML file 'telaInicial.fxml'.";
-        assert lstFuncionarios != null : "fx:id=\"lstFuncionarios\" was not injected: check your FXML file 'telaInicial.fxml'.";
+        preencherTabela();
 
         NutricionistaRepositorio np = new NutricionistaRepositorio();
 
         String registro = System.getProperty("login");
-        
+
         if (np.existe(registro)) {
             lblNutricionista.setText(np.buscar(registro).getNome());
 
