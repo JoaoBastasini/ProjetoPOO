@@ -7,6 +7,7 @@ import br.unesp.poo.grupo03.projeto.modelo.Objetivo;
 import br.unesp.poo.grupo03.projeto.modelo.Paciente;
 import br.unesp.poo.grupo03.projeto.modelo.Prato;
 import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
+import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PratoRepositorio;
@@ -133,14 +134,14 @@ public class CarregadorDados {
         dietaPaciente1.add(almoco);
         dietaPaciente1.add(jantar);
 
-        Dieta d1 = new Dieta(pr.buscar("12345678901"), dietaPaciente1);
+        Dieta d1 = new Dieta(pr.buscar("123.456.789-01"), dietaPaciente1);
 
         // Paciente 2 - Nutricionista 2
         List<Refeicao> dietaPaciente2 = new ArrayList<>();
         dietaPaciente2.add(lanche);
         dietaPaciente2.add(brunch);
         dietaPaciente2.add(jantarTardio);
-        Dieta d2 = new Dieta(pr.buscar("23456789012"), dietaPaciente2);
+        Dieta d2 = new Dieta(pr.buscar("234.567.890-12"), dietaPaciente2);
 
         // Paciente 3 - Nutricionista 3
         List<Refeicao> dietaPaciente3 = new ArrayList<>();
@@ -148,7 +149,7 @@ public class CarregadorDados {
         dietaPaciente3.add(lanche);
         dietaPaciente3.add(jantar);
         dietaPaciente3.add(jantarTardio);
-        Dieta d3 = new Dieta(pr.buscar("34567890123"), dietaPaciente3);
+        Dieta d3 = new Dieta(pr.buscar("345.678.901-23"), dietaPaciente3);
 
         // Paciente 4 - Nutricionista 1
         List<Refeicao> dietaPaciente4 = new ArrayList<>();
@@ -156,7 +157,15 @@ public class CarregadorDados {
         dietaPaciente4.add(brunch);
         dietaPaciente4.add(jantarTardio);
 
-        Dieta d4 = new Dieta(pr.buscar("45678901234"), dietaPaciente4);
-
+        Dieta d4 = new Dieta(pr.buscar("456.789.012-34"), dietaPaciente4);
+        
+        DietaRepositorio dr = new DietaRepositorio();
+        dr.adicionar(d1);
+        dr.adicionar(d2);
+        dr.adicionar(d3);
+        dr.adicionar(d4);
+        
+        dr.imprimir();
+        
     }
 }

@@ -36,5 +36,11 @@ public class DietaRepositorio {
         }
         return null;
     }
-
+    
+    public void imprimir(){
+        for(Dieta d: dietas){
+            System.out.println(d.getPaciente().getNome());
+        }
+    }
+    
 }

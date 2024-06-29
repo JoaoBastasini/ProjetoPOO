@@ -1,6 +1,7 @@
 package br.unesp.poo.grupo03.projeto;
 
 import br.unesp.poo.grupo03.projeto.modelo.Paciente;
+import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import java.io.IOException;
@@ -21,21 +22,25 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class TelaInicialController {
+    
+    private final DietaRepositorio dr = new DietaRepositorio();
+    private final NutricionistaRepositorio nr = new NutricionistaRepositorio();
+    private final PacienteRepositorio pr = new PacienteRepositorio();
 
     @FXML
-    private Button btnEditar;
+    private Button btnEditarDieta;
 
     @FXML
-    private Button btnImprimir;
+    private Button btnEditarPaciente;
 
     @FXML
-    private Button btnMontarDieta;
+    private Button btnImprimirDieta;
 
     @FXML
     private Button btnNovoPaciente;
 
     @FXML
-    private Button btnRemover;
+    private Button btnRemoverPaciente;
 
     @FXML
     private Button btnSair;
@@ -56,6 +61,26 @@ public class TelaInicialController {
     private TableView<Paciente> tblPacientes;
 
     @FXML
+    void OnClickBtnNovoPaciente(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnClickBtnRemoverPaciente(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onClickBtnEditarPaciente(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onClickBtnImprimirDieta(ActionEvent event) {
+
+    }
+
+    @FXML
     void OnClickBtnSair(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         Stage loginStage = new Stage();
@@ -70,14 +95,28 @@ public class TelaInicialController {
     }
 
     @FXML
-    void onClickBtnImprimir(ActionEvent event) {
+    void onClickBtnEditarDieta(ActionEvent event) throws IOException {
+        int numLinha = tblPacientes.getSelectionModel().getSelectedIndex();
+        if (numLinha != -1) {
+            System.setProperty("cpfPacienteSelecionado", tblPacientes.getItems().get(numLinha).getCpf());
+            if (dr.buscarPorPaciente(System.getProperty("cpfPacienteSelecionado")) != null) {
+                Parent root = FXMLLoader.load(getClass().getResource("telaMontarDieta.fxml"));
+                Stage inicialStage = new Stage();
+                inicialStage.initStyle(StageStyle.DECORATED);
+                inicialStage.setScene(new Scene(root));
+
+                Stage stage = (Stage) btnEditarDieta.getScene().getWindow();
+                stage.close();
+
+                inicialStage.show();
+            } else {
+                //montar dieta;
+            }
+        }
 
     }
 
     void preencherTabela() {
-
-        PacienteRepositorio pr = new PacienteRepositorio();
-        NutricionistaRepositorio nr = new NutricionistaRepositorio();
 
         List<Paciente> pacientes = pr.getPacientes();
 
@@ -96,27 +135,23 @@ public class TelaInicialController {
         tblPacientes.setItems(dadosPacientes);
     }
 
-
-
     @FXML
     void initialize() {
         preencherTabela();
 
-        NutricionistaRepositorio np = new NutricionistaRepositorio();
-
         String registro = System.getProperty("login");
 
-        if (np.existe(registro)) {
-            lblNutricionista.setText(np.buscar(registro).getNome());
+        if (nr.existe(registro)) {
+            lblNutricionista.setText(nr.buscar(registro).getNome());
 
             String especialidade = "Nutricao ";
-            if (np.buscar(registro).getEspecialidade().isNutricaoClinica() == true) {
+            if (nr.buscar(registro).getEspecialidade().isNutricaoClinica() == true) {
                 especialidade += "Clinica ";
             }
-            if (np.buscar(registro).getEspecialidade().isNutricaoEsportiva() == true) {
+            if (nr.buscar(registro).getEspecialidade().isNutricaoEsportiva() == true) {
                 especialidade += "Esportiva ";
             }
-            if (np.buscar(registro).getEspecialidade().isNutricaoPediatrica() == true) {
+            if (nr.buscar(registro).getEspecialidade().isNutricaoPediatrica() == true) {
                 especialidade += "Pediatrica ";
             }
 

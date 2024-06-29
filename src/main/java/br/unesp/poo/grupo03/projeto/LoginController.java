@@ -1,7 +1,6 @@
 package br.unesp.poo.grupo03.projeto;
 
 import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
-import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import br.unesp.poo.grupo03.projeto.utilitario.CarregadorDados;
 import java.io.IOException;
 import javafx.event.ActionEvent;

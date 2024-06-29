@@ -4,6 +4,7 @@
  */
 package br.unesp.poo.grupo03.projeto.repositorio;
 
+import br.unesp.poo.grupo03.projeto.modelo.Dieta;
 import br.unesp.poo.grupo03.projeto.modelo.Prato;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,12 @@ public class PratoRepositorio {
 
     public boolean adicionar(Prato prato) {
         return pratos.add(prato);
+    }
+
+    public void imprimir() {
+        for (Prato p : pratos) {
+            System.out.println(p.getNomePrato());
+        }
     }
 
 }
