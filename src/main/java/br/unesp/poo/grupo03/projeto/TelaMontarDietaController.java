@@ -78,7 +78,6 @@ public class TelaMontarDietaController {
 
     @FXML
     void onMouseClickLstRefeicoes(MouseEvent event) {
-        DietaRepositorio dr = new DietaRepositorio();
         if (dr.buscarPorPaciente(System.getProperty("cpfPacienteSelecionado")) != null) {
             List<Refeicao> refeicoes = dr.buscarPorPaciente(System.getProperty("cpfPacienteSelecionado")).getRefeicoesDiarias();
 

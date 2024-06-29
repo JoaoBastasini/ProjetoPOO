@@ -31,8 +31,22 @@ public class PratoRepositorio {
     public boolean adicionar(Prato prato) {
         return pratos.add(prato);
     }
-
+    
+    public Prato buscarPrato(String nomePrato){
+        for (Prato p: pratos){
+            if(p.getNomePrato().equals(nomePrato)){
+                return p;
+            }
+        }
+        return null;
+    }
+    
+    public boolean remover(Prato prato){
+        return pratos.remove(prato);
+    }
+    
     public void imprimir() {
+        System.out.println("Pratos cadastrados no repositorio:");
         for (Prato p : pratos) {
             System.out.println(p.getNomePrato());
         }

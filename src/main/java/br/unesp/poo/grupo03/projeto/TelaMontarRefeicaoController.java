@@ -12,6 +12,7 @@ import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PratoRepositorio;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -43,7 +44,7 @@ public class TelaMontarRefeicaoController implements Initializable {
 
     @FXML
     private Button btnRemoverPrato;
-    
+
     @FXML
     private Button btnSalvar;
 
@@ -55,15 +56,28 @@ public class TelaMontarRefeicaoController implements Initializable {
 
     @FXML
     private ListView<String> lstTodosPratos;
-    
+
     @FXML
-    void onClickBtnInserirSalvar(ActionEvent event) throws IOException{
+    void onClickBtnSalvar(ActionEvent event) throws IOException {
         
+        Paciente paciente = pr.buscar(System.getProperty("cpfPacienteSelecionado"));
+        List<Refeicao> refeicoes = dr.buscarPorPaciente(paciente.getCpf()).getRefeicoesDiarias();
+        List<Prato> nvPratos = new ArrayList<>();
         
-        
-        chamarTela("telaModeloRefeicao.fxml", (Stage) btnSalvar.getScene().getWindow());
+        for (Refeicao r : refeicoes) {
+            if (r.getNome() == System.getProperty("refeicaoSelecionada")) {
+                ObservableList<String> observableListPratosRefeicao = FXCollections.observableArrayList();
+             
+                List<Prato> pratos = r.getOpcoesDePrato();
+                for (String pratoNome : lstPratosRefeicao.getItems()) {
+                    nvPratos.add(ptr.buscarPrato(pratoNome));
+                }
+                r.setOpcoesDePrato(nvPratos);
+            }
+        }
+        chamarTela("telaMontarDieta.fxml", (Stage) btnSalvar.getScene().getWindow());
     }
-    
+
     @FXML
     void onClickBtnInserirPrato(ActionEvent event) {
         String selectedItem = lstTodosPratos.getSelectionModel().getSelectedItem();
@@ -107,9 +121,10 @@ public class TelaMontarRefeicaoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         Paciente paciente = pr.buscar(System.getProperty("cpfPacienteSelecionado"));
         List<Refeicao> refeicoes = dr.buscarPorPaciente(paciente.getCpf()).getRefeicoesDiarias();
-
+        
         for (Refeicao r : refeicoes) {
             if (r.getNome() == System.getProperty("refeicaoSelecionada")) {
                 ObservableList<String> observableListPratosRefeicao = FXCollections.observableArrayList();
