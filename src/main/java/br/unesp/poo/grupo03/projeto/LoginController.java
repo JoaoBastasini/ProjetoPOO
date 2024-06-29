@@ -2,6 +2,8 @@ package br.unesp.poo.grupo03.projeto;
 
 import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
 import br.unesp.poo.grupo03.projeto.utilitario.CarregadorDados;
+import static br.unesp.poo.grupo03.projeto.utilitario.GeneratePDF.geradorPDF;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,10 +66,11 @@ public class LoginController {
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws FileNotFoundException {
         if (!CarregadorDados.init) {
             CarregadorDados.carregar();
             CarregadorDados.init = true;
+            geradorPDF();
         }
     }
 }
