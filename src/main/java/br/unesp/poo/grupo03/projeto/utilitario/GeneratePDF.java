@@ -1,5 +1,7 @@
 package br.unesp.poo.grupo03.projeto.utilitario;
 
+import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
+import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -8,6 +10,7 @@ import com.itextpdf.layout.borders.SolidBorder;
 import com.itextpdf.layout.element.Div;
 import com.itextpdf.layout.element.Paragraph;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 
 
@@ -20,7 +23,11 @@ public class GeneratePDF {
         PdfDocument pdfDocument = new PdfDocument(pdfWriter);
         pdfDocument.setDefaultPageSize(PageSize.A4);
         Document document = new Document(pdfDocument);
+        
+        DietaRepositorio dietaRepositorio = new DietaRepositorio();
 
+        List<Refeicao>  refeicoes = dietaRepositorio.buscarPorPaciente("123.456.789-01").getRefeicoesDiarias();
+        
         /*float height = 285f;
         float width = 600f;
         float tableSize[] = {width, height};
