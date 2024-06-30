@@ -9,6 +9,7 @@ import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
 import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,7 +37,7 @@ public class TelaMontarDietaController {
 
     @FXML
     private Label lblNomeDoPaciente;
-    
+
     @FXML
     private Button btnAdicionar;
 
@@ -74,7 +75,18 @@ public class TelaMontarDietaController {
 
     @FXML
     void onClickBtnExcluir(ActionEvent event) {
+        String cpfPaciente = System.getProperty("cpfPacienteSelecionado");
+        List<Refeicao> refeicoes = dr.buscarPorPaciente(cpfPaciente).getRefeicoesDiarias();
+        String itemSelecionado = lstRefeicoes.getSelectionModel().getSelectedItem();
 
+        Iterator<Refeicao> iterator = refeicoes.iterator();
+        while (iterator.hasNext()) {
+            Refeicao r = iterator.next();
+            if (r.getNome().equals(itemSelecionado)) {
+                iterator.remove();
+            }
+        }
+        exibirRefeicoes();
     }
 
     @FXML
@@ -123,12 +135,11 @@ public class TelaMontarDietaController {
         }
     }
 
-    @FXML
-    void initialize() {
+    void exibirRefeicoes() {
         String cpfPaciente = System.getProperty("cpfPacienteSelecionado");
         // Obter a lista de pacientes do repositório
         List<Refeicao> refeicoes = dr.buscarPorPaciente(cpfPaciente).getRefeicoesDiarias();
-        lblNomeDoPaciente.setText("Dieta de "+ pr.buscar(cpfPaciente).getNome());
+        lblNomeDoPaciente.setText("Dieta de " + pr.buscar(cpfPaciente).getNome());
         ObservableList<String> observableListRefeicoes = FXCollections.observableArrayList();
 
         for (Refeicao r : refeicoes) {
@@ -136,5 +147,10 @@ public class TelaMontarDietaController {
         }
 
         lstRefeicoes.setItems(observableListRefeicoes);
+    }
+
+    @FXML
+    void initialize() {
+        exibirRefeicoes();
     }
 }

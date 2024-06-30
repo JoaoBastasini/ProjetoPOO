@@ -17,7 +17,7 @@
          <children>
             <HBox prefHeight="485.0" prefWidth="984.0">
                <children>
-                  <TableView fx:id="tblPacientes" prefHeight="486.0" prefWidth="772.0">
+                  <TableView fx:id="tblPacientes" onMouseClicked="#onMouseClickTblPacientes" prefHeight="486.0" prefWidth="772.0">
                     <columns>
                       <TableColumn fx:id="tblClNome" prefWidth="570.0" text="Nome Paciente" />
                       <TableColumn fx:id="tblClCpf" minWidth="0.0" prefWidth="201.0" text="CPF" />
@@ -38,7 +38,7 @@
                               <Insets left="10.0" right="10.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="btnNovoPaciente" mnemonicParsing="false" onAction="#OnClickBtnNovoPaciente" prefHeight="67.0" prefWidth="143.0" text="Novo Paciente">
+                        <Button fx:id="btnNovoPaciente" mnemonicParsing="false" onAction="#onClickBtnNovoPaciente" prefHeight="67.0" prefWidth="143.0" text="Novo Paciente">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="25.0" />
                            </VBox.margin>
@@ -48,7 +48,7 @@
                               <Insets left="10.0" right="10.0" top="25.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="btnRemoverPaciente" mnemonicParsing="false" onAction="#OnClickBtnRemoverPaciente" prefHeight="67.0" prefWidth="143.0" text="Remover Paciente">
+                        <Button fx:id="btnRemoverPaciente" mnemonicParsing="false" onAction="#onClickBtnRemoverPaciente" prefHeight="67.0" prefWidth="143.0" text="Remover Paciente">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="25.0" />
                            </VBox.margin>

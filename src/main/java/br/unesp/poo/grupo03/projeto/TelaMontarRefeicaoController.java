@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,9 +24,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -71,17 +75,49 @@ public class TelaMontarRefeicaoController implements Initializable {
         List<Refeicao> refeicoes = dr.buscarPorPaciente(paciente.getCpf()).getRefeicoesDiarias();
         List<Prato> nvPratos = new ArrayList<>();
 
-        for (Refeicao r : refeicoes) {
-            if (r.getNome() == System.getProperty("refeicaoSelecionada")) {
-                ObservableList<String> observableListPratosRefeicao = FXCollections.observableArrayList();
+        String refeicaoSelecionada = System.getProperty("refeicaoSelecionada");
+        //
+        if (!refeicaoSelecionada.equals("adicionar.refeicao")) {
+            for (Refeicao r : refeicoes) {
+                if (r.getNome() == System.getProperty("refeicaoSelecionada")) {
+                    ObservableList<String> observableListPratosRefeicao = FXCollections.observableArrayList();
 
-                List<Prato> pratos = r.getOpcoesDePrato();
-                for (String pratoNome : lstPratosRefeicao.getItems()) {
-                    nvPratos.add(ptr.buscarPrato(pratoNome));
+                    List<Prato> pratos = r.getOpcoesDePrato();
+                    for (String pratoNome : lstPratosRefeicao.getItems()) {
+                        nvPratos.add(ptr.buscarPrato(pratoNome));
+                    }
+                    r.setOpcoesDePrato(nvPratos);
                 }
-                r.setOpcoesDePrato(nvPratos);
             }
+        } else {
+            // Abrir um alert perguntando o nome
+            ObservableList<String> observableListPratosRefeicao = FXCollections.observableArrayList();
+            List<Prato> novosPratos = new ArrayList<>();
+            for (String pratoNome : lstPratosRefeicao.getItems()) {
+                novosPratos.add(ptr.buscarPrato(pratoNome));
+            }
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Nova Refeição");
+            dialog.setHeaderText("Adicionando Nova Refeição");
+            dialog.setContentText("Por favor, digite o nome da refeição");
+
+            // Mostrando o diálogo e esperando a resposta do usuário
+            Optional<String> nomeRefeicao = dialog.showAndWait();
+            nomeRefeicao.ifPresent(nome -> {
+                boolean nomeValido = true;
+                for (Refeicao r : refeicoes) {
+                    if ((r.getNome().equals(nome)) || nome.isEmpty()) {
+                        nomeValido = false;
+                    }
+                }
+                if (nomeValido) {
+                    Refeicao novaRefeicao = new Refeicao(nome, novosPratos);
+                    dr.buscarPorPaciente(System.getProperty("cpfPacienteSelecionado")).getRefeicoesDiarias().add(novaRefeicao);
+                }
+            });
+
         }
+
         chamarTela("telaMontarDieta.fxml", (Stage) btnSalvar.getScene().getWindow());
     }
 
@@ -132,7 +168,7 @@ public class TelaMontarRefeicaoController implements Initializable {
         List<Refeicao> refeicoes = dr.buscarPorPaciente(paciente.getCpf()).getRefeicoesDiarias();
         List<Prato> todosPratos = new ArrayList<>(ptr.getPratos());
         String refeicaoSelecionada = System.getProperty("refeicaoSelecionada");
-        
+
         lblNomeDoPaciente.setText("Dieta de " + paciente.getNome());
         if (refeicaoSelecionada.equals("adicionar.refeicao")) {
             lblNomeRefeicao.setText("Nova Refeição");

@@ -1,6 +1,7 @@
 package br.unesp.poo.grupo03.projeto;
 
 import br.unesp.poo.grupo03.projeto.modelo.Paciente;
+import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
 import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
@@ -18,11 +19,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class TelaInicialController {
-    
+
     private final DietaRepositorio dr = new DietaRepositorio();
     private final NutricionistaRepositorio nr = new NutricionistaRepositorio();
     private final PacienteRepositorio pr = new PacienteRepositorio();
@@ -61,13 +63,15 @@ public class TelaInicialController {
     private TableView<Paciente> tblPacientes;
 
     @FXML
-    void OnClickBtnNovoPaciente(ActionEvent event) {
+    void onClickBtnNovoPaciente(ActionEvent event) {
 
     }
 
     @FXML
-    void OnClickBtnRemoverPaciente(ActionEvent event) {
-
+    void onClickBtnRemoverPaciente(ActionEvent event) {
+        String cpfPaciente = System.getProperty("cpfPacienteSelecionado");
+        pr.remover(cpfPaciente);
+        preencherTabela();
     }
 
     @FXML
@@ -96,24 +100,27 @@ public class TelaInicialController {
 
     @FXML
     void onClickBtnEditarDieta(ActionEvent event) throws IOException {
+        if (dr.buscarPorPaciente(System.getProperty("cpfPacienteSelecionado")) != null) {
+            Parent root = FXMLLoader.load(getClass().getResource("telaMontarDieta.fxml"));
+            Stage inicialStage = new Stage();
+            inicialStage.initStyle(StageStyle.DECORATED);
+            inicialStage.setScene(new Scene(root));
+
+            Stage stage = (Stage) btnEditarDieta.getScene().getWindow();
+            stage.close();
+
+            inicialStage.show();
+        } else {
+            //montar dieta;
+        }
+    }
+
+    @FXML
+    void onMouseClickTblPacientes(MouseEvent event) {
         int numLinha = tblPacientes.getSelectionModel().getSelectedIndex();
         if (numLinha != -1) {
             System.setProperty("cpfPacienteSelecionado", tblPacientes.getItems().get(numLinha).getCpf());
-            if (dr.buscarPorPaciente(System.getProperty("cpfPacienteSelecionado")) != null) {
-                Parent root = FXMLLoader.load(getClass().getResource("telaMontarDieta.fxml"));
-                Stage inicialStage = new Stage();
-                inicialStage.initStyle(StageStyle.DECORATED);
-                inicialStage.setScene(new Scene(root));
-
-                Stage stage = (Stage) btnEditarDieta.getScene().getWindow();
-                stage.close();
-
-                inicialStage.show();
-            } else {
-                //montar dieta;
-            }
         }
-
     }
 
     void preencherTabela() {
