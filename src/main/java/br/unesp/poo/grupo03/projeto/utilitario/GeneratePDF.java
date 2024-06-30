@@ -3,7 +3,8 @@ package br.unesp.poo.grupo03.projeto.utilitario;
 import br.unesp.poo.grupo03.projeto.modelo.Prato;
 import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
 import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
-import br.unesp.poo.grupo03.projeto.repositorio.PratoRepositorio;
+import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
+import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -27,32 +28,36 @@ public class GeneratePDF {
         Document document = new Document(pdfDocument);
         
         // Instanciando os repositorios para poder acessar as listas estaticas (ja iniciada com dados)
-        DietaRepositorio dr = new DietaRepositorio();
-        PratoRepositorio pr = new PratoRepositorio();
+        DietaRepositorio dietaRepositorio = new DietaRepositorio();
+        NutricionistaRepositorio nutricionistaRepositorio = new NutricionistaRepositorio();
+        PacienteRepositorio pacienteRepositorio = new PacienteRepositorio();
+
 
         // Armazenando a lista de refeicoes especificas do paciente de cpf 123...
         // Isso eh importante pois iremos percorrer as refeicoes somente deste paciente e nao todas refeicoes cadastrados no programa
-        List<Refeicao> listaRefeicoes = dr.buscarPorPaciente("123.456.789-01").getRefeicoesDiarias();
-
-        Div line; // define a largura da linha como 100% da largura da página
-        line = new Div().setBorder(new SolidBorder(1)); // define a borda sólida com espessura 1
+        List<Refeicao> listaRefeicoes = dietaRepositorio.buscarPorPaciente("123.456.789-01").getRefeicoesDiarias();
         
-
+        // Pega o nome do paciente
+        //String nutri = nutricionistaRepositorio.buscar("12345").getNome();
         
-         
+        // Pega o nome do paciente
+        //String paciente = pacienteRepositorio.buscar("123.465.798-01").getNome();
+        
+        
         Paragraph title = new Paragraph("DIETA").setFontSize(50);
         document.add(title);
         
-        Paragraph nomeNutri = new Paragraph("Nutricionista - Nome da nutri aqui").setFontSize(14);
+        Paragraph nomeNutri = new Paragraph("Nutricionista - ").setFontSize(14);
         document.add(nomeNutri);
 
-        Paragraph nomeCliente = new Paragraph("Cliente - Nome do cliente aqui").setFontSize(14);
-        document.add(nomeCliente);
+        Paragraph nomeCliente = new Paragraph("Cliente - ").setFontSize(14);
+        document.add(nomeCliente); 
         
+        Div line; // define a largura da linha como 100% da largura da página
+        line = new Div().setBorder(new SolidBorder(1)); // define a borda sólida com espessura 1
         
         // For otimizado para percorrer a lista de refeicoes do paciente
-        for(Refeicao r: listaRefeicoes){
-            
+        for(Refeicao r: listaRefeicoes){          
             // captura o nome da refeicao 
             document.add(line);
             Paragraph refeicao = new Paragraph("Opções de " + r.getNome()).setFontSize(18);
