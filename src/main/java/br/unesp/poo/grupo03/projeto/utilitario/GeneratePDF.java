@@ -38,19 +38,19 @@ public class GeneratePDF {
         List<Refeicao> listaRefeicoes = dietaRepositorio.buscarPorPaciente("123.456.789-01").getRefeicoesDiarias();
         
         // Pega o nome do paciente
-        //String nutri = nutricionistaRepositorio.buscar("12345").getNome();
+        String nutri = nutricionistaRepositorio.buscar("12345").getNome();
         
         // Pega o nome do paciente
-        //String paciente = pacienteRepositorio.buscar("123.465.798-01").getNome();
+        String paciente = pacienteRepositorio.buscar("123.456.789-01").getNome();
         
         
         Paragraph title = new Paragraph("DIETA").setFontSize(50);
         document.add(title);
         
-        Paragraph nomeNutri = new Paragraph("Nutricionista - ").setFontSize(14);
+        Paragraph nomeNutri = new Paragraph("Nutricionista - " + nutri).setFontSize(14);
         document.add(nomeNutri);
 
-        Paragraph nomeCliente = new Paragraph("Cliente - ").setFontSize(14);
+        Paragraph nomeCliente = new Paragraph("Cliente - " + paciente).setFontSize(14);
         document.add(nomeCliente); 
         
         Div line; // define a largura da linha como 100% da largura da página
