@@ -7,7 +7,7 @@ package br.unesp.poo.grupo03.projeto;
 import br.unesp.poo.grupo03.projeto.modelo.Prato;
 import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
 import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
-import br.unesp.poo.grupo03.projeto.repositorio.PratoRepositorio;
+import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import java.io.IOException;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -31,7 +32,11 @@ import javafx.stage.StageStyle;
 public class TelaMontarDietaController {
 
     private final DietaRepositorio dr = new DietaRepositorio();
+    private final PacienteRepositorio pr = new PacienteRepositorio();
 
+    @FXML
+    private Label lblNomeDoPaciente;
+    
     @FXML
     private Button btnAdicionar;
 
@@ -51,8 +56,10 @@ public class TelaMontarDietaController {
     private ListView<String> lstRefeicoes;
 
     @FXML
-    void onClickBtnAdicionar(ActionEvent event) {
-
+    void onClickBtnAdicionar(ActionEvent event) throws IOException {
+        // Adicionando nova refeicao a lista de refeicoes da dieta
+        System.setProperty("refeicaoSelecionada", "adicionar.refeicao");
+        chamarTela("telaMontarRefeicao.fxml", (Stage) btnAdicionar.getScene().getWindow());
     }
 
     @FXML
@@ -118,9 +125,10 @@ public class TelaMontarDietaController {
 
     @FXML
     void initialize() {
+        String cpfPaciente = System.getProperty("cpfPacienteSelecionado");
         // Obter a lista de pacientes do repositório
-        List<Refeicao> refeicoes = dr.buscarPorPaciente(System.getProperty("cpfPacienteSelecionado")).getRefeicoesDiarias();
-
+        List<Refeicao> refeicoes = dr.buscarPorPaciente(cpfPaciente).getRefeicoesDiarias();
+        lblNomeDoPaciente.setText("Dieta de "+ pr.buscar(cpfPaciente).getNome());
         ObservableList<String> observableListRefeicoes = FXCollections.observableArrayList();
 
         for (Refeicao r : refeicoes) {

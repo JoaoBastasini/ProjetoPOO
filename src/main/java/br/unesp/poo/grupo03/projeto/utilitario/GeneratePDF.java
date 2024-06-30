@@ -26,23 +26,6 @@ public class GeneratePDF {
         pdfDocument.setDefaultPageSize(PageSize.A4);
         Document document = new Document(pdfDocument);
         
-        // Instanciando os repositorios para poder acessar as listas estaticas (ja iniciada com dados)
-        DietaRepositorio dr = new DietaRepositorio();
-        PratoRepositorio pr = new PratoRepositorio();
-        
-        // Armazenando a lista de refeicoes especificas do paciente de cpf 123...
-        // Isso eh importante pois iremos percorrer as refeicoes somente deste paciente e nao todas refeicoes cadastrados no programa
-        List<Refeicao> listaRefeicoes = dr.buscarPorPaciente("123.456.789-01").getRefeicoesDiarias();
-        
-        // For otimizado para percorrer a lista de refeicoes do paciente
-        for(Refeicao r: listaRefeicoes){
-            // captura o nome da refeicao
-            System.out.println("|"+r.getNome()); // imprime o nome da refeicao
-            for(Prato p : r.getOpcoesDePrato())// r.getOpcoesDePrato armazena os pratos cadastrados dentro da refeicao que esta sendo lida
-                System.out.println("-"+p.getNomePrato()); // imprime o nome do prato
-        }
-        
-        
         /*float height = 285f;
         float width = 600f;
         float tableSize[] = {width, height};

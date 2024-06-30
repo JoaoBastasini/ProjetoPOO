@@ -4,7 +4,6 @@
  */
 package br.unesp.poo.grupo03.projeto.repositorio;
 
-import br.unesp.poo.grupo03.projeto.modelo.Dieta;
 import br.unesp.poo.grupo03.projeto.modelo.Prato;
 import java.util.ArrayList;
 import java.util.List;

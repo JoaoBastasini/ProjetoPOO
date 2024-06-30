@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -38,6 +39,12 @@ public class TelaMontarRefeicaoController implements Initializable {
     private final PacienteRepositorio pr = new PacienteRepositorio();
     private final DietaRepositorio dr = new DietaRepositorio();
     private final PratoRepositorio ptr = new PratoRepositorio();
+
+    @FXML
+    private Label lblNomeDoPaciente;
+
+    @FXML
+    private Label lblNomeRefeicao;
 
     @FXML
     private Button btnInserirPrato;
@@ -59,15 +66,15 @@ public class TelaMontarRefeicaoController implements Initializable {
 
     @FXML
     void onClickBtnSalvar(ActionEvent event) throws IOException {
-        
+
         Paciente paciente = pr.buscar(System.getProperty("cpfPacienteSelecionado"));
         List<Refeicao> refeicoes = dr.buscarPorPaciente(paciente.getCpf()).getRefeicoesDiarias();
         List<Prato> nvPratos = new ArrayList<>();
-        
+
         for (Refeicao r : refeicoes) {
             if (r.getNome() == System.getProperty("refeicaoSelecionada")) {
                 ObservableList<String> observableListPratosRefeicao = FXCollections.observableArrayList();
-             
+
                 List<Prato> pratos = r.getOpcoesDePrato();
                 for (String pratoNome : lstPratosRefeicao.getItems()) {
                     nvPratos.add(ptr.buscarPrato(pratoNome));
@@ -121,26 +128,34 @@ public class TelaMontarRefeicaoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         Paciente paciente = pr.buscar(System.getProperty("cpfPacienteSelecionado"));
         List<Refeicao> refeicoes = dr.buscarPorPaciente(paciente.getCpf()).getRefeicoesDiarias();
+        List<Prato> todosPratos = new ArrayList<>(ptr.getPratos());
+        String refeicaoSelecionada = System.getProperty("refeicaoSelecionada");
         
-        for (Refeicao r : refeicoes) {
-            if (r.getNome() == System.getProperty("refeicaoSelecionada")) {
-                ObservableList<String> observableListPratosRefeicao = FXCollections.observableArrayList();
-                List<Prato> pratos = r.getOpcoesDePrato();
-                for (Prato p : pratos) {
-                    observableListPratosRefeicao.add(p.getNomePrato());
+        lblNomeDoPaciente.setText("Dieta de " + paciente.getNome());
+        if (refeicaoSelecionada.equals("adicionar.refeicao")) {
+            lblNomeRefeicao.setText("Nova Refeição");
+        } else {
+            lblNomeRefeicao.setText(refeicaoSelecionada);
+            for (Refeicao r : refeicoes) {
+                if (r.getNome().equals(refeicaoSelecionada)) {
+                    ObservableList<String> observableListPratosRefeicao = FXCollections.observableArrayList();
+                    List<Prato> pratos = r.getOpcoesDePrato();
+                    for (Prato p : pratos) {
+                        observableListPratosRefeicao.add(p.getNomePrato());
+                        todosPratos.remove(p);
+                    }
+                    lstPratosRefeicao.setItems(observableListPratosRefeicao);
                 }
-                lstPratosRefeicao.setItems(observableListPratosRefeicao);
             }
         }
-
         ObservableList<String> observableListTodosPratos = FXCollections.observableArrayList();
-        for (Prato p : ptr.getPratos()) {
+        for (Prato p : todosPratos) {
             observableListTodosPratos.add(p.getNomePrato());
         }
         lstTodosPratos.setItems(observableListTodosPratos);
+
     }
 
 }

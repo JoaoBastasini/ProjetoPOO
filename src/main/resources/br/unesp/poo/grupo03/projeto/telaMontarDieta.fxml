@@ -16,7 +16,7 @@
          <children>
             <Pane prefHeight="42.0" prefWidth="789.0">
                <children>
-                  <Label alignment="CENTER" layoutX="-4.0" prefHeight="39.0" prefWidth="798.0" style="-fx-border-color: gray;" text="Dieta de Cauan">
+                  <Label fx:id="lblNomeDoPaciente" alignment="CENTER" layoutX="-4.0" prefHeight="39.0" prefWidth="798.0" style="-fx-border-color: gray;" text="Dieta de Cauan">
                      <font>
                         <Font size="18.0" />
                      </font>
