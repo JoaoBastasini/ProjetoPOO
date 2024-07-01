@@ -17,7 +17,7 @@
          <children>
             <Pane prefHeight="499.0" prefWidth="323.0" style="-fx-background-color: white;">
                <children>
-                  <TextField fx:id="txtRegistro" layoutX="51.0" layoutY="174.0" prefHeight="54.0" prefWidth="229.0" promptText="Registro" />
+                  <TextField fx:id="txtRegistro" layoutX="51.0" layoutY="174.0" prefHeight="54.0" prefWidth="229.0" promptText="Registro" text="12345" />
                   <Label layoutX="119.0" layoutY="74.0" text="LOGIN">
                      <font>
                         <Font name="System Bold" size="26.0" />
@@ -28,7 +28,7 @@
                         <Font size="21.0" />
                      </font>
                   </Button>
-                  <PasswordField fx:id="txtSenha" layoutX="51.0" layoutY="250.0" prefHeight="54.0" prefWidth="228.0" promptText="Senha" />
+                  <PasswordField fx:id="txtSenha" layoutX="51.0" layoutY="250.0" prefHeight="54.0" prefWidth="228.0" promptText="Senha" text="senha123" />
                </children>
             </Pane>
          </children>
