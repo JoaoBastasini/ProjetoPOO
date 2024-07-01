@@ -127,7 +127,6 @@ public class TelaMontarDietaController {
 
     void exibirRefeicoes() {
         String cpfPaciente = System.getProperty("cpfPacienteSelecionado");
-        // Obter a lista de pacientes do repositório
         List<Refeicao> refeicoes = dr.buscarPorPaciente(cpfPaciente).getRefeicoesDiarias();
         lblNomeDoPaciente.setText("Dieta de " + pr.buscar(cpfPaciente).getNome());
         ObservableList<String> observableListRefeicoes = FXCollections.observableArrayList();

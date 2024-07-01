@@ -4,7 +4,7 @@ import java.util.List;
 
 
 public class Refeicao {
-    private String nome; // (Cafe, Almoco, Lanche, etc...
+    private String nome;
     private List<Prato> opcoesDePrato;
 
     public Refeicao() {

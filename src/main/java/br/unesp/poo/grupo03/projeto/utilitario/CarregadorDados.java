@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarregadorDados {
+
     public static boolean init;
-    
+
     public static void carregar() {
-        // Criando e Carregando Pratos
-        
+
         PratoRepositorio pratosRep = new PratoRepositorio();
         List<Prato> pratos = new ArrayList<>();
 
@@ -47,12 +47,11 @@ public class CarregadorDados {
         for (Prato p : pratos) {
             pratosRep.adicionar(p);
         }
-
-        // Criando e Carregando Refeicoes
+        // Criando listas de pratos
         List<Prato> opcoesCafe = new ArrayList<>();
-        opcoesCafe.add(pratos.get(2)); // Salada de frutas
-        opcoesCafe.add(pratos.get(9)); // Purê de batatas
-        opcoesCafe.add(pratos.get(15)); // Sanduíche natural
+        opcoesCafe.add(pratos.get(2));
+        opcoesCafe.add(pratos.get(9));
+        opcoesCafe.add(pratos.get(15));
 
         List<Prato> opcoesAlmoco = new ArrayList<>();
         opcoesAlmoco.add(pratos.get(0));
@@ -128,7 +127,6 @@ public class CarregadorDados {
         pr.adicionar(new Paciente(78.0f, 29, 1.77f, "09876543210", objetivo2, nr.buscar("12345"), "Lucas", "lucas@example.com", true));
 
         // Montando dietas para os pacientes
-        // Paciente 1 - Nutricionista 1
         List<Refeicao> dietaPaciente1 = new ArrayList<>();
         dietaPaciente1.add(cafe);
         dietaPaciente1.add(almoco);
@@ -136,14 +134,12 @@ public class CarregadorDados {
 
         Dieta d1 = new Dieta(pr.buscar("123.456.789-01"), dietaPaciente1);
 
-        // Paciente 2 - Nutricionista 2
         List<Refeicao> dietaPaciente2 = new ArrayList<>();
         dietaPaciente2.add(lanche);
         dietaPaciente2.add(brunch);
         dietaPaciente2.add(jantarTardio);
         Dieta d2 = new Dieta(pr.buscar("234.567.890-12"), dietaPaciente2);
 
-        // Paciente 3 - Nutricionista 3
         List<Refeicao> dietaPaciente3 = new ArrayList<>();
         dietaPaciente3.add(cafe);
         dietaPaciente3.add(lanche);
@@ -151,21 +147,20 @@ public class CarregadorDados {
         dietaPaciente3.add(jantarTardio);
         Dieta d3 = new Dieta(pr.buscar("345.678.901-23"), dietaPaciente3);
 
-        // Paciente 4 - Nutricionista 1
         List<Refeicao> dietaPaciente4 = new ArrayList<>();
         dietaPaciente4.add(lanche);
         dietaPaciente4.add(brunch);
         dietaPaciente4.add(jantarTardio);
 
         Dieta d4 = new Dieta(pr.buscar("456.789.012-34"), dietaPaciente4);
-        
+
         DietaRepositorio dr = new DietaRepositorio();
         dr.adicionar(d1);
         dr.adicionar(d2);
         dr.adicionar(d3);
         dr.adicionar(d4);
-        
+
         dr.imprimir();
-        
+
     }
 }

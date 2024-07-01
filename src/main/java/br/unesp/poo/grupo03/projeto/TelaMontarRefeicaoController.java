@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package br.unesp.poo.grupo03.projeto;
 
 import br.unesp.poo.grupo03.projeto.modelo.Paciente;
@@ -24,20 +20,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- * FXML Controller class
- *
- * @author cauan
- */
 public class TelaMontarRefeicaoController implements Initializable {
 
     private final PacienteRepositorio pr = new PacienteRepositorio();
@@ -76,7 +65,6 @@ public class TelaMontarRefeicaoController implements Initializable {
         List<Prato> nvPratos = new ArrayList<>();
 
         String refeicaoSelecionada = System.getProperty("refeicaoSelecionada");
-        //
         if (!refeicaoSelecionada.equals("adicionar.refeicao")) {
             for (Refeicao r : refeicoes) {
                 if (r.getNome() == System.getProperty("refeicaoSelecionada")) {
@@ -90,7 +78,6 @@ public class TelaMontarRefeicaoController implements Initializable {
                 }
             }
         } else {
-            // Abrir um alert perguntando o nome
             ObservableList<String> observableListPratosRefeicao = FXCollections.observableArrayList();
             List<Prato> novosPratos = new ArrayList<>();
             for (String pratoNome : lstPratosRefeicao.getItems()) {
@@ -101,7 +88,6 @@ public class TelaMontarRefeicaoController implements Initializable {
             dialog.setHeaderText("Adicionando Nova Refeição");
             dialog.setContentText("Por favor, digite o nome da refeição");
 
-            // Mostrando o diálogo e esperando a resposta do usuário
             Optional<String> nomeRefeicao = dialog.showAndWait();
             nomeRefeicao.ifPresent(nome -> {
                 boolean nomeValido = true;
