@@ -43,4 +43,10 @@ public class PacienteRepositorio {
         }
         return null;
     }
+    
+    public void imprimir(){
+        for(Paciente p: pacientes){
+            p.toString();
+        }
+    }
 }

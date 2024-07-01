@@ -1,11 +1,13 @@
 package br.unesp.poo.grupo03.projeto;
 
+import br.unesp.poo.grupo03.projeto.modelo.Dieta;
 import br.unesp.poo.grupo03.projeto.modelo.Paciente;
 import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
 import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,8 +65,10 @@ public class TelaInicialController {
     private TableView<Paciente> tblPacientes;
 
     @FXML
-    void onClickBtnNovoPaciente(ActionEvent event) {
-
+    void onClickBtnNovoPaciente(ActionEvent event) throws IOException {
+        
+        System.setProperty("cpfPacienteSelecionado", "novo.paciente");
+        chamarTela("telaCadastrarPaciente.fxml", (Stage) btnNovoPaciente.getScene().getWindow());
     }
 
     @FXML
@@ -75,8 +79,10 @@ public class TelaInicialController {
     }
 
     @FXML
-    void onClickBtnEditarPaciente(ActionEvent event) {
-
+    void onClickBtnEditarPaciente(ActionEvent event) throws IOException {
+        
+        
+        chamarTela("telaCadastrarPaciente.fxml", (Stage) btnEditarPaciente.getScene().getWindow());
     }
 
     @FXML
@@ -101,17 +107,13 @@ public class TelaInicialController {
     @FXML
     void onClickBtnEditarDieta(ActionEvent event) throws IOException {
         if (dr.buscarPorPaciente(System.getProperty("cpfPacienteSelecionado")) != null) {
-            Parent root = FXMLLoader.load(getClass().getResource("telaMontarDieta.fxml"));
-            Stage inicialStage = new Stage();
-            inicialStage.initStyle(StageStyle.DECORATED);
-            inicialStage.setScene(new Scene(root));
-
-            Stage stage = (Stage) btnEditarDieta.getScene().getWindow();
-            stage.close();
-
-            inicialStage.show();
+            chamarTela("telaMontarDieta.fxml", (Stage) btnEditarDieta.getScene().getWindow());
         } else {
-            //montar dieta;
+            List<Refeicao> novaListaRefeicoes = new ArrayList<>();
+            Dieta novaDieta = new Dieta(pr.buscar(System.getProperty("cpfPacienteSelecionado")), novaListaRefeicoes);
+            dr.adicionar(novaDieta);
+            System.out.println(System.getProperty("cpfPacienteSelecionado"));
+            chamarTela("telaMontarDieta.fxml", (Stage) btnEditarDieta.getScene().getWindow());
         }
     }
 
@@ -120,6 +122,7 @@ public class TelaInicialController {
         int numLinha = tblPacientes.getSelectionModel().getSelectedIndex();
         if (numLinha != -1) {
             System.setProperty("cpfPacienteSelecionado", tblPacientes.getItems().get(numLinha).getCpf());
+            System.out.println("Apos setar o cpf"+System.getProperty("cpfPacienteSelecionado"));
         }
     }
 
@@ -140,6 +143,17 @@ public class TelaInicialController {
         }
 
         tblPacientes.setItems(dadosPacientes);
+    }
+
+    void chamarTela(String nome, Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(nome));
+        Stage inicialStage = new Stage();
+        inicialStage.initStyle(StageStyle.DECORATED);
+        inicialStage.setScene(new Scene(root));
+
+        stage.close();
+
+        inicialStage.show();
     }
 
     @FXML

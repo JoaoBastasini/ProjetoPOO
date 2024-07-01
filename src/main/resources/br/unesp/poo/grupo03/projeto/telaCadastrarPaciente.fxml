@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.unesp.poo.grupo03.projeto.TelaCadastrarPacienteController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="lblTitulo" alignment="CENTER" prefHeight="58.0" prefWidth="600.0" text="Dieta de Cauan">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="289.0" prefWidth="600.0">
+               <children>
+                  <Pane prefHeight="567.0" prefWidth="300.0">
+                     <children>
+                        <TextField fx:id="txtNomePaciente" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="271.0" promptText="NOME" />
+                        <TextField fx:id="txtCpfPaciente" layoutX="14.0" layoutY="160.0" prefHeight="35.0" prefWidth="271.0" promptText="CPF" />
+                        <TextField fx:id="txtIdadePaciente" layoutX="14.0" layoutY="234.0" prefHeight="35.0" prefWidth="271.0" promptText="IDADE" />
+                        <TextField fx:id="txtEmailPaciente" layoutX="14.0" layoutY="90.0" prefHeight="35.0" prefWidth="271.0" promptText="EMAIL" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="567.0" prefWidth="301.0">
+                     <children>
+                        <ComboBox fx:id="ComboBoxSexo" layoutX="15.0" layoutY="14.0" prefHeight="35.0" prefWidth="271.0" promptText="Sexo" />
+                        <ComboBox fx:id="ComboBoxObjetivo" layoutX="16.0" layoutY="91.0" prefHeight="35.0" prefWidth="271.0" promptText="Objetivo" />
+                        <TextField fx:id="txtPesoPaciente" layoutX="15.0" layoutY="163.0" prefHeight="35.0" prefWidth="271.0" promptText="PESO" />
+                        <TextField fx:id="txtAlturaPaciente" layoutX="15.0" layoutY="233.0" prefHeight="35.0" prefWidth="271.0" promptText="ALTURA" />
+                     </children>
+                  </Pane>
+               </children>
+            </HBox>
+            <Pane prefHeight="81.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="btnSalvar" layoutX="232.0" layoutY="12.0" mnemonicParsing="false" onAction="#onClickBtnSalvar" prefHeight="47.0" prefWidth="137.0" text="Cadastrar" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

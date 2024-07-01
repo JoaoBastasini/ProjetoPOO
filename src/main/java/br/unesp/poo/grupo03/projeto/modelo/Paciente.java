@@ -1,6 +1,6 @@
 package br.unesp.poo.grupo03.projeto.modelo;
 
-public class Paciente extends Pessoa {
+public final class Paciente extends Pessoa {
 
     private float peso;
     private int idade;
@@ -92,6 +92,19 @@ public class Paciente extends Pessoa {
         this.tmb = tmb;
     }
 
+    public boolean isSexoMasculino() {
+        return sexoMasculino;
+    }
+
+    public void setSexoMasculino(boolean sexoMasculino) {
+        this.sexoMasculino = sexoMasculino;
+    }
+
+    public String getCpfSemFormatacao() {
+        String cpfSemFormatacao = cpf;
+        return cpfSemFormatacao.replaceAll("[\\.\\-]", "");
+    }
+
     private String formatarCpf(String cpf) {
         return cpf.substring(0, 3) + "." + cpf.substring(3, 6) + "." + cpf.substring(6, 9) + "-" + cpf.substring(9, 11);
     }
@@ -107,4 +120,11 @@ public class Paciente extends Pessoa {
             return (655 + (9.6f * peso) + (1.8f * (alturaMetros * 100)) - (4.7f * idade));
         }
     }
+
+    @Override
+    public String toString() {
+        return "Paciente{" + "peso=" + peso + ", idade=" + idade + ", alturaMetros=" + alturaMetros + ", imc=" + imc + ", tmb=" + tmb + ", cpf=" + cpf + ", objetivo=" + objetivo + ", nutricionista=" + nutricionista + ", sexoMasculino=" + sexoMasculino + '}';
+    }
+    
+    
 }

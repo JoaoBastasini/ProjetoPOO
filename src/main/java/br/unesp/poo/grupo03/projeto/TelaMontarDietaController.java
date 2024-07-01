@@ -4,11 +4,13 @@
  */
 package br.unesp.poo.grupo03.projeto;
 
+import br.unesp.poo.grupo03.projeto.modelo.Dieta;
 import br.unesp.poo.grupo03.projeto.modelo.Prato;
 import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
 import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -151,6 +153,6 @@ public class TelaMontarDietaController {
 
     @FXML
     void initialize() {
-        exibirRefeicoes();
+            exibirRefeicoes();
     }
 }
