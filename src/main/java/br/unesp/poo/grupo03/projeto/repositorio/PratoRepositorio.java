@@ -45,7 +45,6 @@ public class PratoRepositorio {
     }
     
     public void imprimir() {
-        System.out.println("Pratos cadastrados no repositorio:");
         for (Prato p : pratos) {
             System.out.println(p.getNomePrato());
         }

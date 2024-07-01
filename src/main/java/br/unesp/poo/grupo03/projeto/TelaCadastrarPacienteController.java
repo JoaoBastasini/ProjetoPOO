@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package br.unesp.poo.grupo03.projeto;
 
 import br.unesp.poo.grupo03.projeto.modelo.Nutricionista;
@@ -24,11 +20,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.converter.NumberStringConverter;
 
-/**
- * FXML Controller class
- *
- * @author cauan
- */
 public class TelaCadastrarPacienteController {
 
     private final NutricionistaRepositorio nr = new NutricionistaRepositorio();
@@ -66,7 +57,7 @@ public class TelaCadastrarPacienteController {
 
     @FXML
     void onClickBtnSalvar(ActionEvent event) throws IOException {
-        if(!System.getProperty("cpfPacienteSelecionado").equals("novo.paciente")){
+        if (!System.getProperty("cpfPacienteSelecionado").equals("novo.paciente")) {
             pr.remover(System.getProperty("cpfPacienteSelecionado"));
         }
         String nome = txtNomePaciente.getText();
@@ -127,8 +118,8 @@ public class TelaCadastrarPacienteController {
             txtEmailPaciente.setText(p.getEmail());
             txtCpfPaciente.setText(p.getCpfSemFormatacao());
             txtIdadePaciente.setText(String.valueOf(p.getIdade()));
-            txtPesoPaciente.setText(String.valueOf(p.getPeso()/10));
-            txtAlturaPaciente.setText(String.valueOf(p.getAlturaMetros()/100));
+            txtPesoPaciente.setText(String.valueOf(p.getPeso() / 10));
+            txtAlturaPaciente.setText(String.valueOf(p.getAlturaMetros() / 100));
             if (p.getObjetivo().isGanharPeso()) {
                 ComboBoxObjetivo.setValue("Ganhar Peso");
             } else if (p.getObjetivo().isPerderPeso()) {
@@ -138,7 +129,7 @@ public class TelaCadastrarPacienteController {
                 ComboBoxObjetivo.setValue("Manter Peso");
             }
 
-            if(p.isSexoMasculino()){
+            if (p.isSexoMasculino()) {
                 ComboBoxSexo.setValue("Masculino");
             } else {
                 ComboBoxSexo.setValue("Feminíno");

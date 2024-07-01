@@ -15,7 +15,7 @@
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Label fx:id="lblTitulo" alignment="CENTER" prefHeight="58.0" prefWidth="600.0" text="Dieta de Cauan">
+            <Label fx:id="lblTitulo" alignment="CENTER" prefHeight="58.0" prefWidth="600.0" text="Paciente">
                <font>
                   <Font size="18.0" />
                </font>

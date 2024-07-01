@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package br.unesp.poo.grupo03.projeto;
 
-import br.unesp.poo.grupo03.projeto.modelo.Dieta;
 import br.unesp.poo.grupo03.projeto.modelo.Prato;
 import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
 import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -27,11 +21,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-/**
- * FXML Controller class
- *
- * @author cauan
- */
 public class TelaMontarDietaController {
 
     private final DietaRepositorio dr = new DietaRepositorio();
@@ -60,7 +49,6 @@ public class TelaMontarDietaController {
 
     @FXML
     void onClickBtnAdicionar(ActionEvent event) throws IOException {
-        // Adicionando nova refeicao a lista de refeicoes da dieta
         System.setProperty("refeicaoSelecionada", "adicionar.refeicao");
         chamarTela("telaMontarRefeicao.fxml", (Stage) btnAdicionar.getScene().getWindow());
     }
@@ -153,6 +141,6 @@ public class TelaMontarDietaController {
 
     @FXML
     void initialize() {
-            exibirRefeicoes();
+        exibirRefeicoes();
     }
 }

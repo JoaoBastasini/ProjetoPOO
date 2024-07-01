@@ -1,5 +1,4 @@
 package br.unesp.poo.grupo03.projeto;
-//coment
 
 import br.unesp.poo.grupo03.projeto.utilitario.GerenciaPlanilha;
 import javafx.application.Application;
@@ -7,14 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-//import static br.unesp.poo.grupo03.modelo.utilitario.GeneratePDF.geradorPDF;
 import java.io.FileNotFoundException;
 
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     private static Scene scene;

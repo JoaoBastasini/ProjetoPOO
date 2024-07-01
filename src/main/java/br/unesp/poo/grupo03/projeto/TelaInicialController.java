@@ -88,11 +88,10 @@ public class TelaInicialController {
 
     @FXML
     void onClickBtnImprimirDieta(ActionEvent event) throws FileNotFoundException {
-//        if(System.getProperty("cpfPacienteSelecionado")) != null){
-//            
-//        }
-        GerarPDF gerar = new GerarPDF();
-        gerar.geradorPDF();
+        if(dr.buscarPorPaciente(System.getProperty("cpfPacienteSelecionado")) != null){
+            GerarPDF gerar = new GerarPDF();
+            gerar.geradorPDF();
+        }
     }
 
     @FXML
@@ -117,7 +116,6 @@ public class TelaInicialController {
             List<Refeicao> novaListaRefeicoes = new ArrayList<>();
             Dieta novaDieta = new Dieta(pr.buscar(System.getProperty("cpfPacienteSelecionado")), novaListaRefeicoes);
             dr.adicionar(novaDieta);
-            System.out.println(System.getProperty("cpfPacienteSelecionado"));
             chamarTela("telaMontarDieta.fxml", (Stage) btnEditarDieta.getScene().getWindow());
         }
     }
@@ -127,7 +125,6 @@ public class TelaInicialController {
         int numLinha = tblPacientes.getSelectionModel().getSelectedIndex();
         if (numLinha != -1) {
             System.setProperty("cpfPacienteSelecionado", tblPacientes.getItems().get(numLinha).getCpf());
-            System.out.println("Apos setar o cpf" + System.getProperty("cpfPacienteSelecionado"));
         }
     }
 
