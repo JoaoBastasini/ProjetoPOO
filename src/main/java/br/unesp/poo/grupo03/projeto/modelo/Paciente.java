@@ -120,11 +120,5 @@ public final class Paciente extends Pessoa {
             return (655 + (9.6f * peso) + (1.8f * (alturaMetros * 100)) - (4.7f * idade));
         }
     }
-
-    @Override
-    public String toString() {
-        return "Paciente{" + "peso=" + peso + ", idade=" + idade + ", alturaMetros=" + alturaMetros + ", imc=" + imc + ", tmb=" + tmb + ", cpf=" + cpf + ", objetivo=" + objetivo + ", nutricionista=" + nutricionista + ", sexoMasculino=" + sexoMasculino + '}';
-    }
-    
     
 }

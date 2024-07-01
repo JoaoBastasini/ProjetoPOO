@@ -147,7 +147,7 @@ public class TelaMontarRefeicaoController implements Initializable {
 
     @FXML
     void onClickBtnVoltar(ActionEvent event) throws IOException {
-        chamarTela("telaModeloRefeicao.fxml", (Stage) btnVoltar.getScene().getWindow());
+        chamarTela("telaMontarRefeicao.fxml", (Stage) btnVoltar.getScene().getWindow());
 
     }
 

@@ -1,8 +1,9 @@
 package br.unesp.poo.grupo03.projeto;
 
 import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
+import br.unesp.poo.grupo03.projeto.repositorio.PratoRepositorio;
 import br.unesp.poo.grupo03.projeto.utilitario.CarregadorDados;
-import static br.unesp.poo.grupo03.projeto.utilitario.GeneratePDF.geradorPDF;
+import br.unesp.poo.grupo03.projeto.utilitario.GerenciaPlanilha;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -21,11 +22,8 @@ import javafx.stage.StageStyle;
 
 public class LoginController {
 
-    //@FXML
-    //private ResourceBundle resources;
-//
-    //@FXML
-    //private URL location;
+    PratoRepositorio ptr = new PratoRepositorio();
+    
     @FXML
     private Button btnEntrar;
 
@@ -47,7 +45,7 @@ public class LoginController {
         if (nr.existe(registro) && senha.equals(nr.buscar(registro).getSenha())) {
             System.setProperty("login", registro);
             System.setProperty("password", senha);
-
+            
             Parent root = FXMLLoader.load(getClass().getResource("telaInicial.fxml"));
             Stage inicialStage = new Stage();
             inicialStage.initStyle(StageStyle.DECORATED);
@@ -66,11 +64,12 @@ public class LoginController {
     }
 
     @FXML
-    void initialize() throws FileNotFoundException {
+    void initialize() throws FileNotFoundException, IOException {
         if (!CarregadorDados.init) {
             CarregadorDados.carregar();
+            GerenciaPlanilha gp = new GerenciaPlanilha(ptr);
+            gp.ler();
             CarregadorDados.init = true;
-            geradorPDF();
         }
     }
 }

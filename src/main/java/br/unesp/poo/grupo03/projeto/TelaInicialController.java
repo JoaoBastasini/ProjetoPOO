@@ -6,6 +6,8 @@ import br.unesp.poo.grupo03.projeto.modelo.Refeicao;
 import br.unesp.poo.grupo03.projeto.repositorio.DietaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.NutricionistaRepositorio;
 import br.unesp.poo.grupo03.projeto.repositorio.PacienteRepositorio;
+import br.unesp.poo.grupo03.projeto.utilitario.GerarPDF;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +68,7 @@ public class TelaInicialController {
 
     @FXML
     void onClickBtnNovoPaciente(ActionEvent event) throws IOException {
-        
+
         System.setProperty("cpfPacienteSelecionado", "novo.paciente");
         chamarTela("telaCadastrarPaciente.fxml", (Stage) btnNovoPaciente.getScene().getWindow());
     }
@@ -80,14 +82,17 @@ public class TelaInicialController {
 
     @FXML
     void onClickBtnEditarPaciente(ActionEvent event) throws IOException {
-        
-        
+
         chamarTela("telaCadastrarPaciente.fxml", (Stage) btnEditarPaciente.getScene().getWindow());
     }
 
     @FXML
-    void onClickBtnImprimirDieta(ActionEvent event) {
-
+    void onClickBtnImprimirDieta(ActionEvent event) throws FileNotFoundException {
+//        if(System.getProperty("cpfPacienteSelecionado")) != null){
+//            
+//        }
+        GerarPDF gerar = new GerarPDF();
+        gerar.geradorPDF();
     }
 
     @FXML
@@ -122,7 +127,7 @@ public class TelaInicialController {
         int numLinha = tblPacientes.getSelectionModel().getSelectedIndex();
         if (numLinha != -1) {
             System.setProperty("cpfPacienteSelecionado", tblPacientes.getItems().get(numLinha).getCpf());
-            System.out.println("Apos setar o cpf"+System.getProperty("cpfPacienteSelecionado"));
+            System.out.println("Apos setar o cpf" + System.getProperty("cpfPacienteSelecionado"));
         }
     }
 
