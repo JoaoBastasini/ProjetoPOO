@@ -160,7 +160,5 @@ public class CarregadorDados {
         dr.adicionar(d3);
         dr.adicionar(d4);
 
-        dr.imprimir();
-
     }
 }
